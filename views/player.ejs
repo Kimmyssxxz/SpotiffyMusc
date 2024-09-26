@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing - <%= song.title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #4a90e2, #d0e2f4);
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background: #283593;
+            padding: 20px;
+        }
+        .logo {
+            color: #ffffff;
+            font-size: 24px;
+            text-align: left;
+        }
+        .nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav-link {
+            color: #ffffff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            padding: 40px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3f51b5;
+        }
+        .now-playing {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .album-cover {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .song-info {
+            margin-bottom: 20px;
+        }
+        .song-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .control-button {
+            background: #4caf50;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            color: white;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .control-button:hover {
+            background: #45a049;
+        }
+        .audio-player {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Spotiffy</h1>
+            <nav class="nav">
+                <a href="/songs" class="nav-link">Songs</a>
+                <a href="/upload" class="nav-link">Upload Song</a>
+                <a href="/playlist" class="nav-link">Playlist</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h2 class="section-title">Now Playing</h2>
+
+        <div class="now-playing">
+            <img src="<%= albumArtUrl %>" alt="<%= song.album %> Cover Art" class="album-cover">
+            <div class="song-info">
+                <h3 class="song-title"><%= song.title %></h3>
+                <p>Artist: <%= song.artist %></p>
+                <p>Album: <%= song.album %></p>
+            </div>
+
+            <div class="player-controls">
+                <a href="/play/<%= previousSongId %>" class="control-button">
+                    <i class="fas fa-step-backward"></i>
+                </a>
+                <audio controls class="audio-player">
+                    <source src="<%= song.song_url %>" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <a href="/play/<%= nextSongId %>" class="control-button">
+                    <i class="fas fa-step-forward"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Songs</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+        }
+        .header {
+            background-color: #1a1a1a;
+            padding: 20px;
+        }
+        .logo {
+            color: #fff;
+            font-size: 28px;
+            text-align: left;
+        }
+        .nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav-link {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #ff7e18;
+        }
+        .main-content {
+            padding: 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff7e18;
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 300px;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            background-color: #ff7e18;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover {
+            background-color: #e06c00;
+        }
+        .songs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .song-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+            width: 220px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .song-card:hover {
+            transform: scale(1.05);
+        }
+        .play-button {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 25px;
+            background-color: #6a11cb;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .play-button:hover {
+            background-color: #5a0e9d;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Spotiffy</h1>
+            <nav class="nav">
+                <a href="/songs" class="nav-link">Songs</a>
+                <a href="/upload" class="nav-link">Add Song</a>
+                <a href="/playlist" class="nav-link">Playlist</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h2 class="section-title">Songs For You</h2>
+
+        <!-- Search Form -->
+        <form action="/search" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search by title or artist" required class="search-input">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+
+        <!-- Songs Grid -->
+        <div class="songs-grid">
+            <% songs.forEach(song => { %>
+                <div class="song-card">
+                    <div class="song-details">
+                        <h3 class="song-title"><%= song.title %></h3>
+                        <p>Artist: <%= song.artist %></p>
+                        <p>Album: <%= song.album %></p>
+                        <a href="/play/<%= song.id %>" class="play-button">
+                            <i class="fas fa-play"></i> Play
+                        </a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
